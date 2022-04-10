@@ -29,3 +29,10 @@ class Materia(models.Model):
     nombre_materia = fields.Char('nombre_materia', required=True)
     estado_materia = fields.Char('estado_materia', default=True)
     carrera_id = fields.Many2one('accesscontrol.carrera')
+
+class Laboratorio(models.Model):
+    _name = 'accesscontrol.lab'
+    nombre_lab = fields.Char('nombre_lab', required=True)
+    estado_lab = fields.Char('estado_lab', default=True)
+    estado_puerta = fields.Char('estado_puerta', default='Cerrado')
+    clave_llave = fields.Char('clave_llave', default='#')

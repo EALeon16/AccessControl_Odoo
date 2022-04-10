@@ -23,9 +23,20 @@ class paginaCarrera(http.Controller):
       '/guardar_carrera',  
     ], type='http', auth='public', website=True,cors='*',csrf=False)
     def guardarCarrera (self, **post):
-        request.env['accesscontrol.carrera'].sudo().create(post)
-        print('se creoooooooooooooooooo', post)
-        return request.redirect('/carrera')
+        carrera = request.params['nombre_carrera']
+        if request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)]):
+          c = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
+          if request.env['accesscontrol.carrera'].sudo().search([('estado_carrera','=',False)]):
+            request.env['accesscontrol.carrera'].sudo().search([('id','=',c.id)]).sudo().update({'estado_carrera':True})
+            print('ya existe la carrera y se actualizo')
+            return request.redirect('/carrera')
+          else:
+            print('ya existe la carrera')
+            return request.redirect('/carrera')
+        else:
+          request.env['accesscontrol.carrera'].sudo().create(post)
+          print('se creo', post)
+          return request.redirect('/carrera')
     
     @http.route([
       '/eliminarcarrera',  
