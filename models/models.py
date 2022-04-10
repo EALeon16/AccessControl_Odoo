@@ -32,6 +32,7 @@ class Materia(models.Model):
 
 class Laboratorio(models.Model):
     _name = 'accesscontrol.lab'
+    codigo_lab = fields.Char('codigo_lab', required=True)
     nombre_lab = fields.Char('nombre_lab', required=True)
     estado_lab = fields.Char('estado_lab', default=True)
     estado_puerta = fields.Char('estado_puerta', default='Cerrado')

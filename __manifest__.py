@@ -14,6 +14,9 @@
         'views/frm_materia.xml',
         'views/frm_editarmateria.xml',
         'views/frm_eliminarmateria.xml',
+        'views/frm_lab.xml',
+        'views/frm_editarlab.xml',
+        'views/frm_eliminarlab.xml',
     ],
     
 }

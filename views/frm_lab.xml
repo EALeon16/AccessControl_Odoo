@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id='websitmateria' name='principal'>
+    <template id='websitelab' name='principal'>
      <html lang="en">
 
 <head>
@@ -93,12 +93,12 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Informes</span></a>
             </li>
@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Materias</h1>
+    <h1>Laboratorios</h1>
     <div class="form-group" >
         
        
@@ -232,26 +232,30 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <div >
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar Materia
+                <span class="glyphicon glyphicon-plus" ></span>Agregar Laboratorio
               </a>
         </div>
     <table class="table table-striped" id="tpelicula">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Materia</th>
-                <th>Carrera</th>
+                <th>Codigo Laboratorio</th>
+                <th>Nombre Laboratorio</th>
+                <th>Estado Puerta</th>
+                <th>Contrasenia</th>
                 <th>Accion </th>
             </tr>
             </thead>
              
-                <tr t-foreach="materia" t-as="m">
+                <tr t-foreach="lab" t-as="l">
 
-                    <th><t t-esc="m.id"/></th>
-                    <th><t t-esc="m.nombre_materia"/></th>
-                   <th><t t-esc="m.carrera_id.nombre_carrera"/></th>
-                    <th><a  t-att-href="('/eliminarmateria?id=%s' % m.id)"  class="fas fa-archive"></a>
-                    <a  t-att-href="('/editarmateria?id=%s' % m.id)"  class="fas fa-archive"></a></th>
+                    <th><t t-esc="l.id"/></th>
+                    <th><t t-esc="l.codigo_lab"/></th>
+                    <th><t t-esc="l.nombre_lab"/></th>
+                    <th><t t-esc="l.estado_puerta"/></th>
+                   <th><t t-esc="l.clave_llave"/></th>
+                    <th><a  t-att-href="('/eliminarlab?id=%s' % l.id)"  class="fas fa-archive"></a>
+                    <a  t-att-href="('/editarlab?id=%s' % l.id)"  class="fas fa-archive"></a></th>
                            
    
                     
@@ -268,29 +272,32 @@ $('#myModal').on('shown.bs.modal', function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Materia</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Laboratorio</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"></span>
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/guardar_materia">
+        <form method="POST" action="/guardarlab">
  
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la materia</label>
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Codigo del laboratorio</label>
                     <div class="col-sm-10">
-                    <input type="text" required="True" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" class="form-control" id="nombre_materia" name="nombre_materia" t-att-value="nombre_materia" placeholder="Ingrese nombre de la materia"/>
+                    <input type="text" required="True" class="form-control" id="codigo_lab" name="codigo_lab" t-att-value="codigo_lab" placeholder="Ingrese el codigo del laboratorio"/>
                     </div>
                 </div>
-                  <div>
-                    <label for="">Carrera a la que pertenece</label>
-                    <select required="True"  id="carrera" name="carrera" > 
-                        <option value="">Eliga una opcion</option>
-                        <div t-foreach="c" t-as="data">
-                         <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
-                         </div>
-                    </select>
-                            </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre del laboratorio</label>
+                    <div class="col-sm-10">
+                    <input type="text" required="True" class="form-control" id="nombre_lab" name="nombre_lab" t-att-value="nombre_lab" placeholder="Ingrese el nombre del laboratorio"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Clave de la llave</label>
+                    <div class="col-sm-10">
+                    <input type="text" required="True" class="form-control" id="clave_llave" name="clave_llave" t-att-value="clave_llave" placeholder="Ingrese la clave de la llave"/>
+                    </div>
+                </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -306,25 +313,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 
-<div class="modal" id="editModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Eliminar carrera</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Desea eliminar la carrera seleccionada?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Confirmar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
                     <!-- AQUIIIIIIIIIIIIIIIIII ACABAAAAAAAAAAAAAAAAAAAAAAAAAA -->
                     <div class="row">
