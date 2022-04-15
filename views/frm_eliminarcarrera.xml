@@ -93,7 +93,7 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/horarios">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
@@ -234,8 +234,8 @@ $('#myModal').on('shown.bs.modal', function () {
 
   <form method="POST" action="/eliminarcarrera">
  
-  <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar la carrera?</label>
+  <div class="form-group row" t-foreach="b" t-as="b">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar la carrera <t t-esc="b.nombre_carrera"></t>?</label>
     <div class="col-sm-10">
       <input hidden ="text"  type="text" class="form-control" id="estado_carrera" for="estado_carrera"  value="True" t-att-value="estado_carrera" readonly="True"/>
 
@@ -255,30 +255,11 @@ $('#myModal').on('shown.bs.modal', function () {
 
                     <!--Cerrar aqui plantilla-->
                 
-<!--           AQUIIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
+<!--           AQUIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
 
 
 
 
-<div class="modal" id="editModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Eliminar carrera</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Desea eliminar la carrera seleccionada?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Confirmar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
                     <!-- AQUIIIIIIIIIIIIIIIIII ACABAAAAAAAAAAAAAAAAAAAAAAAAAA -->
                     <div class="row">

@@ -41,7 +41,12 @@ class principalCurso(http.Controller):
       try:
         carrera = request.params['id']
         id = carrera
-        return request.render('accesscontrol.webeliminarcurso',{})
+        buscar = request.env['accesscontrol.curso'].sudo().search([('id','=',carrera)])
+        context = {
+        'b':buscar,
+
+        }
+        return request.render('accesscontrol.webeliminarcurso',context)
 
       except:
         eliminarcurso = request.env['accesscontrol.curso'].sudo().search([('id','=',id)]).sudo().update({'estado_curso':False})

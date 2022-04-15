@@ -17,6 +17,7 @@
         'views/frm_lab.xml',
         'views/frm_editarlab.xml',
         'views/frm_eliminarlab.xml',
+        'views/frm_horario.xml',
     ],
     
 }

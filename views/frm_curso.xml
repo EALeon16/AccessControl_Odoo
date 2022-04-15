@@ -93,7 +93,7 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/horarios">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
@@ -250,8 +250,8 @@ $('#myModal').on('shown.bs.modal', function () {
                     <th><t t-esc="dc.id"/></th>
                     <th><t t-esc="dc.nombre_curso"/></th>
                    <th><t t-esc="dc.carerra_id.nombre_carrera"/></th>
-                    <th><a  t-att-href="('/eliminarcurso?id=%s' % dc.id)"  class="fas fa-archive"></a>
-                    <a  t-att-href="('/editarcurso?id=%s' % dc.id)"  class="fas fa-archive"></a></th>
+                    <th><a t-att-href="('/editarcurso?id=%s' % dc.id)"><i class="fa fa-pencil-alt"></i></a>
+                       <a t-att-href="('/eliminarcurso?id=%s' % dc.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
                            
    
                     

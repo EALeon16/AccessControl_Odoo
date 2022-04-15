@@ -93,7 +93,7 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/horarios">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
@@ -254,8 +254,8 @@ $('#myModal').on('shown.bs.modal', function () {
                     <th><t t-esc="l.nombre_lab"/></th>
                     <th><t t-esc="l.estado_puerta"/></th>
                    <th><t t-esc="l.clave_llave"/></th>
-                    <th><a  t-att-href="('/eliminarlab?id=%s' % l.id)"  class="fas fa-archive"></a>
-                    <a  t-att-href="('/editarlab?id=%s' % l.id)"  class="fas fa-archive"></a></th>
+                    <th><a t-att-href="('/editarlab?id=%s' % l.id)" ><i class="fa fa-pencil-alt"></i></a>
+                       <a t-att-href="('/eliminarlab?id=%s' % l.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
                            
    
                     

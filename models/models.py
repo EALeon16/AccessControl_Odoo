@@ -37,3 +37,15 @@ class Laboratorio(models.Model):
     estado_lab = fields.Char('estado_lab', default=True)
     estado_puerta = fields.Char('estado_puerta', default='Cerrado')
     clave_llave = fields.Char('clave_llave', default='#')
+
+
+#class Horario(models.Model):
+#    _name = 'accesscontrol.horario'
+#    hora_inicio = fields.Char('hora_fin', required=True)
+#    hora_fin = fields.Char('hora_inicio', required=True)
+#    dia = fields.Char('dia', required=True )
+#    estado_horario = fields.Char('estado_horario', default=True)
+#    lab_id = fields.Many2one('accesscontrol.lab')
+#    carrera_id = fields.Many2one('accesscontrol.carrera')
+#    materia_id = fields.Many2one('accesscontrol.materia')
+#    curso_id = fields.Many2one('accesscontrol.curso')

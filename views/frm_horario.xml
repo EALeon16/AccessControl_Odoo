@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id='webeditarmateria' name='principal'>
+    <template id='websitehorario' name='principal'>
      <html lang="en">
 
 <head>
@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/accesscontrol/static/css/sb-admin-2.min.css" rel="stylesheet"/>
+
 <script>
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
@@ -98,7 +99,7 @@ $('#myModal').on('shown.bs.modal', function () {
                     <span>Horario</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Informes</span></a>
             </li>
@@ -224,41 +225,134 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Carreras</h1>
+    <h1>Laboratorios</h1>
     <div class="form-group" >
         
        
       
     </div>
- 
-    
-    <form id="edit" name="edit" method="POST" action="/editarmateria">
- 
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la materia</label>
-            <div class="col-sm-10" t-foreach="m" t-as="m">
-            <input type="text" class="form-control"  required="True" title="Solo se aceptan letras" id="nombre_materia" t-att-href="nombre_materia" t-att-value="nombre_materia" name="nombre_materia" for="nombre_materia"  t-att-placeholder="m.nombre_materia"/>
-            </div>
+    <div >
+            <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
+                <span class="glyphicon glyphicon-plus" ></span>Agregar Laboratorio
+              </a>
         </div>
-         <div>
-                    <label for="">Carrera a la que pertenece</label>
-                    <select required="True" t-att-value="id_curso" id="carrera" name="carrera" > 
-                        <option value="">Eliga una opcion</option>
-                        <div t-foreach="c" t-as="data">
-                         <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
-                         </div>
-                    </select>
+    <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">carrera</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">materia</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
                             </div>
-        <div class="modal-footer">
-            <a type="button" href="/carrera"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-            <button type="submit"  class="btn btn-success">Guardar</button>
-        </div>
-    </form>
-
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <table class="table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <th>Employer</th>
+                                            <th>Awards</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                        <tr t-foreach="c" t-as="data">
+                                            <td><t t-esc="data.id"/></td>
+                                            <td><t t-esc="data.nombre_carrera"/></td>
+                                            <td><t t-esc="data.estado_carrera"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <table class="table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <th>Employer</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="m" t-as="mdata">
+                                            <td><t t-esc="mdata.id"/></td>
+                                            <td><t t-esc="mdata.nombre_materia"/></td>
+                                            <td><t t-esc="mdata.estado_materia"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <table class="table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Contest Name</th>
+                                            <th>Date</th>
+                                            <th>Award Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#">Work 1</a></td>
+                                            <td>Doe</td>
+                                            <td>john@example.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Work 2</a></td>
+                                            <td>Moe</td>
+                                            <td>mary@example.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">Work 3</a></td>
+                                            <td>Dooley</td>
+                                            <td>july@example.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 </div>
 
                     <!--Cerrar aqui plantilla-->
-                
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Laboratorio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/guardarlab">
+ 
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Codigo del laboratorio</label>
+                    <div class="col-sm-10">
+                    <input type="text" required="True" class="form-control" id="codigo_lab" name="codigo_lab" t-att-value="codigo_lab" placeholder="Ingrese el codigo del laboratorio"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre del laboratorio</label>
+                    <div class="col-sm-10">
+                    <input type="text" required="True" class="form-control" id="nombre_lab" name="nombre_lab" t-att-value="nombre_lab" placeholder="Ingrese el nombre del laboratorio"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Clave de la llave</label>
+                    <div class="col-sm-10">
+                    <input type="text" required="True" class="form-control" id="clave_llave" name="clave_llave" t-att-value="clave_llave" placeholder="Ingrese la clave de la llave"/>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 <!--           AQUIIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
 
 

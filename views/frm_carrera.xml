@@ -93,7 +93,7 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/horarios">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
@@ -232,7 +232,7 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <div >
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar Agrega
+                <span class="glyphicon glyphicon-plus" ></span>Agregar carrera
               </a>
         </div>
     <table class="table table-striped" id="tpelicula">
@@ -248,8 +248,8 @@ $('#myModal').on('shown.bs.modal', function () {
 
                     <th><t t-esc="data.id"/></th>
                     <th><t t-esc="data.nombre_carrera"/></th>
-                   <th><a  t-att-href="('/eliminarcarrera?id=%s' % data.id)"  class="fas fa-archive"></a>
-                    <a  t-att-href="('/editarcarrera?id=%s' % data.id)"  class="fas fa-archive"></a></th>
+                   <th><a t-att-href="('/editarcarrera?id=%s' % data.id)"><i class="fa fa-pencil-alt"></i></a>
+                       <a t-att-href="('/eliminarcarrera?id=%s' % data.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
 
                            
    

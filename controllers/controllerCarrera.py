@@ -46,7 +46,12 @@ class paginaCarrera(http.Controller):
       try:
         carreraid = request.params['id']
         id = carreraid
-        return request.render('accesscontrol.webeliminarcarrera',{})
+        buscar = request.env['accesscontrol.carrera'].sudo().search([('id','=',carreraid)])
+        context = {
+        'b':buscar,
+
+        }
+        return request.render('accesscontrol.webeliminarcarrera',context)
       except:
         eliminarcarrera = request.env['accesscontrol.carrera'].sudo().search([('id','=',id)]).sudo().update({'estado_carrera':False})
         print('Se elimino la carrera', id)

@@ -1,1 +1,1 @@
-from . import main, controllerCarrera, controllerCurso, controllerMateria, controllerLab
+from . import main, controllerCarrera, controllerCurso, controllerMateria, controllerLab, controllersHorario
