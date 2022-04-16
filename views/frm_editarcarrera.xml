@@ -56,7 +56,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/puertas">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Abrir puertas</span></a>
             </li>
@@ -80,14 +80,14 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/docentes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Docente</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/accesscontrol">
+                <a class="nav-link" href="/estudiantes">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Estudiantes</span></a>
             </li>
@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Carreras</h1>
+    <h1>Editar nombre de la carrera</h1>
     <div class="form-group" >
         
        
@@ -232,12 +232,12 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
  
     
-    <form id="edit" name="edit" method="POST" action="/editarcarrera">
+    <form id="edit" name="edit" method="POST" action="/editarcarrera" t-foreach="c" t-as="l">
  
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la carrera</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" id="nombre_carrera" t-att-href="nombre_carrera" t-att-value="nombre_carrera" name="nombre_carrera" for="nombre_carrera"  placeholder="Ingrese nombre de la carrera"/>
+            <input type="text" class="form-control" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" id="nombre_carrera"  t-att-value="l.nombre_carrera" name="nombre_carrera" for="nombre_carrera"  placeholder="Ingrese nombre de la carrera"/>
             </div>
         </div>
         <div class="modal-footer">

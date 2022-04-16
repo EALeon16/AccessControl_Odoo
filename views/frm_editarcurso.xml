@@ -56,7 +56,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/puertas">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Abrir puertas</span></a>
             </li>
@@ -80,14 +80,14 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/docentes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Docente</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/accesscontrol">
+                <a class="nav-link" href="/estudiantes">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Estudiantes</span></a>
             </li>
@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Carreras</h1>
+    <h1>Editar curso</h1>
     <div class="form-group" >
         
        
@@ -237,7 +237,7 @@ $('#myModal').on('shown.bs.modal', function () {
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Nombre del curso</label>
             <div class="col-sm-10" t-foreach="curso" t-as="curso">
-            <input type="text" class="form-control"  required="True" title="Solo se aceptan letras" id="nombre_curso" t-att-href="nombre_corso" t-att-value="nombre_curso" name="nombre_curso" for="nombre_curso"  t-att-placeholder="curso.nombre_curso"/>
+            <input type="text" class="form-control"  required="True" title="Solo se aceptan letras" id="nombre_curso"  name="nombre_curso" for="nombre_curso"  t-att-value="curso.nombre_curso"/>
             </div>
         </div>
          <div>
@@ -250,7 +250,7 @@ $('#myModal').on('shown.bs.modal', function () {
                     </select>
                             </div>
         <div class="modal-footer">
-            <a type="button" href="/carrera"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+            <a type="button" href="/curso"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
             <button type="submit"  class="btn btn-success">Guardar</button>
         </div>
     </form>

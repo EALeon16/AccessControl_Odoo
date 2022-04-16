@@ -25,9 +25,10 @@ class principalCurso(http.Controller):
     def guardarCarrera (self, **post):
         nombre = request.params['nombre_curso']
         carrera = request.params['carrera']
+        buscarcarrera = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
         request.env['accesscontrol.curso'].sudo().create({
           'nombre_curso':nombre,
-          'carerra_id':carrera,
+          'carerra_id':buscarcarrera.id,
         })
 
         print('se creoooooooooooooooooo', nombre, carrera)

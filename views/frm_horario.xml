@@ -57,7 +57,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/puertas">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Abrir puertas</span></a>
             </li>
@@ -81,14 +81,14 @@ $('#myModal').on('shown.bs.modal', function () {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/docentes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Docente</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/accesscontrol">
+                <a class="nav-link" href="/estudiantes">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Estudiantes</span></a>
             </li>

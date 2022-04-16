@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id='websitmateria' name='principal'>
+    <template id='webeliminarestudiante' name='principal'>
      <html lang="en">
 
 <head>
@@ -98,12 +98,12 @@ $('#myModal').on('shown.bs.modal', function () {
                     <span>Horario</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Informes</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="/lab">
+                <a class="nav-link" href="t/lab">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Laboratorio</span></a>
             </li>
@@ -136,7 +136,7 @@ $('#myModal').on('shown.bs.modal', function () {
                     </button>
 
                     <!-- Topbar Search -->
-                  
+                   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -224,107 +224,42 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Materias</h1>
+    <h1>Eliminar carrera</h1>
     <div class="form-group" >
         
        
       
     </div>
-    <div >
-            <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar Materia
-              </a>
-        </div>
-    <table class="table table-striped" id="tpelicula">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Materia</th>
-                <th>Carrera</th>
-                <th>Accion </th>
-            </tr>
-            </thead>
-             
-                <tr t-foreach="materia" t-as="m">
+    
 
-                    <th><t t-esc="m.id"/></th>
-                    <th><t t-esc="m.nombre_materia"/></th>
-                   <th><t t-esc="m.carrera_id.nombre_carrera"/></th>
-                    <th><a t-att-href="('/editarmateria?id=%s' % m.id)" ><i class="fa fa-pencil-alt"></i></a>
-                       <a t-att-href="('/eliminarmateria?id=%s' % m.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
-                           
-   
-                    
-                </tr>
-            
-    
-            
-    
-        </table>
+  <form method="POST" action="/eliminarcarrera">
+ 
+  <div class="form-group row" t-foreach="b" t-as="b">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar la carrera <t t-esc="b.nombre_carrera"></t>?</label>
+    <div class="col-sm-10">
+      <input hidden ="text"  type="text" class="form-control" id="estado_carrera" for="estado_carrera"  value="True" t-att-value="estado_carrera" readonly="True"/>
+
+    </div>
+    <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"  >Eliminar</button>
+       <a  href="/carrera" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+    </div>
+  </div>
+  <div class="modal-footer">
+       
+        
+      </div>
+</form>
+
 </div>
 
                     <!--Cerrar aqui plantilla-->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Materia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="/guardar_materia">
- 
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la materia</label>
-                    <div class="col-sm-10">
-                    <input type="text" required="True" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" class="form-control" id="nombre_materia" name="nombre_materia" t-att-value="nombre_materia" placeholder="Ingrese nombre de la materia"/>
-                    </div>
-                </div>
-                  <div>
-                    <label for="">Carrera a la que pertenece</label>
-                    <select required="True"  id="carrera" name="carrera" > 
-                        <option value="">Eliga una opcion</option>
-                        <div t-foreach="c" t-as="data">
-                         <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
-                         </div>
-                    </select>
-                            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<!--           AQUIIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
+                
+<!--           AQUIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
 
 
 
 
-<div class="modal" id="editModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Eliminar carrera</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Desea eliminar la carrera seleccionada?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Confirmar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
                     <!-- AQUIIIIIIIIIIIIIIIIII ACABAAAAAAAAAAAAAAAAAAAAAAAAAA -->
                     <div class="row">

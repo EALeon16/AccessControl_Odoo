@@ -68,8 +68,14 @@ class paginaCarrera(http.Controller):
       global id 
       try:
         fir2 = request.params['id']
+        buscarC = request.env['accesscontrol.carrera'].sudo().search([('id','=',fir2)])
+        context = {
+          'c':buscarC,
+
+        }
         id = fir2
         pasa = True
+        return request.render('accesscontrol.webeditarcarrera',context)
       except:
         nombre = request.params['nombre_carrera']
         carreraeliminar2 = request.env['accesscontrol.carrera'].sudo().search([('id','=',id)]).sudo().update({'nombre_carrera':nombre})
