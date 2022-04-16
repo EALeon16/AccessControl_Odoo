@@ -1,4 +1,5 @@
 from email.policy import default
+from logging import warning
 from odoo import fields, models
 
 
@@ -38,7 +39,27 @@ class Laboratorio(models.Model):
     estado_puerta = fields.Char('estado_puerta', default='Cerrado')
     clave_llave = fields.Char('clave_llave', default='#')
 
+class Docente(models.Model):
+    _name = 'accesscontrol.docente'
+    cedula_docente = fields.Char('cedula_docente', required=True)
+    nombre_docente = fields.Char('nombre_docente', required=True)
+    apellido_docente = fields.Char('apellido_docente', required=True)
+    correo_docente = fields.Char('correo_docente', required=True)
+    estado_docente = fields.Char('estado_docente', default=True)
+    id_tarjeta = fields.Char('id_tarjeta', required=True)
+    carrera_id = fields.Many2one('accesscontrol.carrera')
 
+
+class Estudiante(models.Model):
+    _name = 'accesscontrol.estudiante'
+    cedula_estudiante = fields.Char('cedula_estudiante', required=True)
+    nombre_estudiante = fields.Char('nombre_estudiante', required=True)
+    apellido_estudiante = fields.Char('apellido_estudiante', required=True)
+    estado_estudiante = fields.Char('estado_estudiante', default=True)
+    id_tarjeta = fields.Char('id_tarjeta', required=True)
+    curso_id = fields.Many2one('accesscontrol.curso')
+
+warning = fields.Boolean(default = True)
 #class Horario(models.Model):
 #    _name = 'accesscontrol.horario'
 #    hora_inicio = fields.Char('hora_fin', required=True)

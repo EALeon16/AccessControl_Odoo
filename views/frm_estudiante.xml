@@ -232,7 +232,7 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <div >
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar carrera
+                <span class="glyphicon glyphicon-plus" ></span>Agregar estudiante
               </a>
         </div>
     <table class="table table-striped" id="tpelicula">
@@ -267,18 +267,30 @@ $('#myModal').on('shown.bs.modal', function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar carrera</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Estudiante</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"></span>
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/guardar_carrera">
+        <form method="POST" action="/guardarestudiante">
  
   <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la carrera</label>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
     <div class="col-sm-10">
-      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_carrera" name="nombre_carrera" t-att-value="nombre_carrera" placeholder="Ingrese nombre de la carrera"/>
+      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_estudiante" name="cedula_estudiante" t-att-value="cedula_estudiante" placeholder="Ingrese cedula del estudiante"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_estudiante" name="nombre_estudiante" t-att-value="nombre_estudiante" placeholder="Ingrese nombre del estudiante"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Apellido</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_estudiante" name="apellido_estudiante" t-att-value="apellido_estudiante" placeholder="Ingrese apellido del estudiante"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
+    <div class="col-sm-10">
+      <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="id_tarjeta" placeholder="ID tarjeta"/>
     </div>
   </div>
   <div class="modal-footer">
@@ -295,26 +307,6 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 
-
-<div class="modal" id="editModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Eliminar carrera</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Desea eliminar la carrera seleccionada?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Confirmar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
                     <!-- AQUIIIIIIIIIIIIIIIIII ACABAAAAAAAAAAAAAAAAAAAAAAAAAA -->
                     <div class="row">

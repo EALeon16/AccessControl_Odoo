@@ -232,7 +232,7 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <div >
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar carrera
+                <span class="glyphicon glyphicon-plus" ></span>Agregar docente
               </a>
         </div>
     <table class="table table-striped" id="tpelicula">
@@ -267,18 +267,34 @@ $('#myModal').on('shown.bs.modal', function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar carrera</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar docente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"></span>
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/guardar_carrera">
+        <form method="POST" action="/guardardocente">
  
   <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la carrera</label>
+  <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
     <div class="col-sm-10">
-      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_carrera" name="nombre_carrera" t-att-value="nombre_carrera" placeholder="Ingrese nombre de la carrera"/>
+      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_docente" name="cedula_docente" t-att-value="cedula_docente" placeholder="Ingrese cedula del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_docente" name="nombre_docente" t-att-value="nombre_docente" placeholder="Ingrese nombre del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Apellido</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_docente" name="apellido_docente" t-att-value="apellido_docente" placeholder="Ingrese apellido del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Correo</label>
+    <div class="col-sm-10">
+      <input type="email" required="True" title="Solo se aceptan direcciones de corre bien formadas pertenecientes a @unl.edu.ec" pattern=".+@unl.edu\.ec" class="form-control" id="correo_docente" name="correo_docente" t-att-value="correo_docente" placeholder="example@unl.edu.ec"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
+    <div class="col-sm-10">
+      <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="id_tarjeta" placeholder="ID tarjeta"/>
     </div>
   </div>
   <div class="modal-footer">
