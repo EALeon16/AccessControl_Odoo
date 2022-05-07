@@ -232,17 +232,17 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     
 
-  <form method="POST" action="/eliminarcarrera">
+  <form method="POST" action="/eliminardocente">
  
   <div class="form-group row" t-foreach="b" t-as="b">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar la carrera <t t-esc="b.nombre_carrera"></t>?</label>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar al docente <t t-esc="b.nombre_docente"> </t><t t-esc="b.apellido_docente"></t>?</label>
     <div class="col-sm-10">
       <input hidden ="text"  type="text" class="form-control" id="estado_carrera" for="estado_carrera"  value="True" t-att-value="estado_carrera" readonly="True"/>
 
     </div>
     <div class="modal-footer">
           <button type="submit" class="btn btn-primary"  >Eliminar</button>
-       <a  href="/carrera" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+       <a  href="/docentes" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
     </div>
   </div>
   <div class="modal-footer">

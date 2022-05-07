@@ -1,6 +1,6 @@
 from email.policy import default
 from logging import warning
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class Administrador(models.Model):
@@ -59,7 +59,9 @@ class Estudiante(models.Model):
     id_tarjeta = fields.Char('id_tarjeta', required=True)
     curso_id = fields.Many2one('accesscontrol.curso')
 
-warning = fields.Boolean(default = True)
+warning = fields.Boolean('warning',default=False)
+
+
 #class Horario(models.Model):
 #    _name = 'accesscontrol.horario'
 #    hora_inicio = fields.Char('hora_fin', required=True)
@@ -70,3 +72,53 @@ warning = fields.Boolean(default = True)
 #    carrera_id = fields.Many2one('accesscontrol.carrera')
 #    materia_id = fields.Many2one('accesscontrol.materia')
 #    curso_id = fields.Many2one('accesscontrol.curso')
+
+class DialogBoxWizard(models.TransientModel):
+    """ Wizard for dialog box
+    """
+    _name = 'dialog.box.wizard'
+
+    message = fields.Text('Message')
+    mode = fields.Selection([
+        ('ok', 'OK only'),
+        ('yes_no', 'Yes / No'),
+        ('cancel_confirm', 'Cancel / Confirm'),
+        ], 'Mode', default='cancel_confirm')
+    action = fields.Text('Action', help='Use self as reference for call')
+
+    @api.model
+    def open_dialog(self, message, action, title, mode='cancel_confirm'):
+        """ Open dialog box procedure
+        """
+        # Create record
+        current = self.create({
+            'message': message,
+            'mode': mode,
+            'action': action,
+            })
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': title,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_id': current.id,
+            'res_model': 'dialog.box.wizard',
+            # 'view_id': view_id, # False
+            'views': [(False, 'form')],
+            'domain': [],
+            'context': self.env.context,
+            'target': 'new',
+            'nodestroy': False,
+            'flags': {
+                'form': {'action_buttons': False},
+                }
+            }
+
+    # --------------------
+    # Wizard button event:
+    # --------------------
+    def action_go(self):
+        """ Event for button done
+        """
+        return eval(self.action)

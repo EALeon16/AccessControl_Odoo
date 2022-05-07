@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Editar nombre de la carrera</h1>
+    <h1>Editar docente</h1>
     <div class="form-group" >
         
        
@@ -232,16 +232,39 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
  
     
-    <form id="edit" name="edit" method="POST" action="/editarcarrera" t-foreach="c" t-as="l">
+    <form id="edit" name="edit" method="POST" action="/editardocente" t-foreach="d" t-as="doc">
  
         <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la carrera</label>
-            <div class="col-sm-10">
-            <input type="text" class="form-control" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" id="nombre_carrera"  t-att-value="l.nombre_carrera" name="nombre_carrera" for="nombre_carrera"  placeholder="Ingrese nombre de la carrera"/>
-            </div>
-        </div>
+  <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
+    <div class="col-sm-10">
+      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_docente" name="cedula_docente" t-att-value="doc.cedula_docente" placeholder="Ingrese cedula del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_docente" name="nombre_docente" t-att-value="doc.nombre_docente" placeholder="Ingrese nombre del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Apellido</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_docente" name="apellido_docente" t-att-value="doc.apellido_docente" placeholder="Ingrese apellido del docente"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Correo</label>
+    <div class="col-sm-10">
+      <input type="email" required="True" title="Solo se aceptan direcciones de correo pertenecientes a @unl.edu.ec" pattern=".+@unl.edu\.ec" class="form-control" id="correo_docente" name="correo_docente" t-att-value="doc.correo_docente" placeholder="example@unl.edu.ec"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
+    <div class="col-sm-10">
+      <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="doc.id_tarjeta" placeholder="ID tarjeta"/>
+    </div>
+  </div>
+  <label for="">Carrera al que pertenece</label>
+    <select required="True"  id="carrera" name="carrera" > 
+    <option value="">Eliga una opcion</option>
+    <div t-foreach="c" t-as="data">
+    <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
+    </div>
+    </select>
         <div class="modal-footer">
-            <a type="button" href="/carrera"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+            <a type="button" href="/docentes"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
             <button type="submit"  class="btn btn-success">Guardar</button>
         </div>
     </form>

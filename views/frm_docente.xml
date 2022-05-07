@@ -239,17 +239,25 @@ $('#myModal').on('shown.bs.modal', function () {
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
                 <th>Carrera</th>
                 <th>Accion </th>
             </tr>
             </thead>
              
-                <tr t-foreach="c" t-as="data">
+                <tr t-foreach="d" t-as="doc">
 
-                    <th><t t-esc="data.id"/></th>
-                    <th><t t-esc="data.nombre_carrera"/></th>
-                   <th><a t-att-href="('/editarcarrera?id=%s' % data.id)"><i class="fa fa-pencil-alt"></i></a>
-                       <a t-att-href="('/eliminarcarrera?id=%s' % data.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
+                    <th><t t-esc="doc.id"/></th>
+                    <th><t t-esc="doc.cedula_docente"/></th>
+                    <th><t t-esc="doc.nombre_docente"/></th>
+                    <th><t t-esc="doc.apellido_docente"/></th>
+                    <th><t t-esc="doc.correo_docente"/></th>
+                    <th><t t-esc="doc.carrera_id.nombre_carrera"/></th>
+                   <th><a t-att-href="('/editardocente?id=%s' % doc.id)"><i class="fa fa-pencil-alt"></i></a>
+                       <a t-att-href="('/eliminardocente?id=%s' % doc.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
 
                            
    
@@ -290,13 +298,20 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <label for="inputPassword" class="col-sm-2 col-form-label">Correo</label>
     <div class="col-sm-10">
-      <input type="email" required="True" title="Solo se aceptan direcciones de corre bien formadas pertenecientes a @unl.edu.ec" pattern=".+@unl.edu\.ec" class="form-control" id="correo_docente" name="correo_docente" t-att-value="correo_docente" placeholder="example@unl.edu.ec"/>
+      <input type="email" required="True" title="Solo se aceptan direcciones de correo pertenecientes a @unl.edu.ec" pattern=".+@unl.edu\.ec" class="form-control" id="correo_docente" name="correo_docente" t-att-value="correo_docente" placeholder="example@unl.edu.ec"/>
     </div>
     <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
     <div class="col-sm-10">
       <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="id_tarjeta" placeholder="ID tarjeta"/>
     </div>
   </div>
+  <label for="">Carrera al que pertenece</label>
+    <select required="True"  id="carrera" name="carrera" > 
+    <option value="">Eliga una opcion</option>
+    <div t-foreach="c" t-as="data">
+    <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
+    </div>
+    </select>
   <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-success">Guardar</button>

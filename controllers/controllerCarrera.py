@@ -1,10 +1,13 @@
+from email.policy import default
 from urllib.request import Request
 from odoo import http
 from odoo.http import request
 from odoo.addons.accesscontrol.models.models import Carrera
 import json
-
+from odoo import fields, api
 id = None
+
+
 
 class paginaCarrera(http.Controller):
     @http.route([
@@ -23,6 +26,8 @@ class paginaCarrera(http.Controller):
       '/guardar_carrera',  
     ], type='http', auth='public', website=True,cors='*',csrf=False)
     def guardarCarrera (self, **post):
+        warning = fields.Boolean(default=False)
+
         carrera = request.params['nombre_carrera']
         if request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)]):
           c = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
@@ -35,7 +40,10 @@ class paginaCarrera(http.Controller):
             return request.redirect('/carrera')
         else:
           request.env['accesscontrol.carrera'].sudo().create(post)
-          print('se creo', post)
+          
+          self.warning= True
+          
+          print('se creo', post, self.warning)
           return request.redirect('/carrera')
     
     @http.route([
@@ -90,3 +98,8 @@ class paginaCarrera(http.Controller):
         return request.render('accesscontrol.webeditarcarrera',{})
       else:  
         return request.redirect('/carrera')
+  
+  
+    
+
+    

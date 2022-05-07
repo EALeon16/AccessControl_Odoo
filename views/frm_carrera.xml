@@ -219,6 +219,7 @@ $('#myModal').on('shown.bs.modal', function () {
     nc(document).ready( function () {
     nc('#tpelicula').DataTable();
 } );
+
 </script>
 
 
@@ -226,8 +227,7 @@ $('#myModal').on('shown.bs.modal', function () {
    
     <h1>Carreras</h1>
     <div class="form-group" >
-        
-       
+    
       
     </div>
     <div >

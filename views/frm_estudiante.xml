@@ -239,17 +239,23 @@ $('#myModal').on('shown.bs.modal', function () {
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Carrera</th>
-                <th>Accion </th>
+                <th>Cedula</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Curso</th>
+                <th>Accion</th>
             </tr>
             </thead>
              
-                <tr t-foreach="c" t-as="data">
+                <tr t-foreach="e" t-as="data">
 
                     <th><t t-esc="data.id"/></th>
-                    <th><t t-esc="data.nombre_carrera"/></th>
-                   <th><a t-att-href="('/editarcarrera?id=%s' % data.id)"><i class="fa fa-pencil-alt"></i></a>
-                       <a t-att-href="('/eliminarcarrera?id=%s' % data.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
+                    <th><t t-esc="data.cedula_estudiante"/></th>
+                    <th><t t-esc="data.nombre_estudiante"/></th>
+                    <th><t t-esc="data.apellido_estudiante"/></th>
+                    <th><t t-esc="data.curso_id.nombre_curso"/></th>
+                   <th><a t-att-href="('/editarestudiante?id=%s' % data.id)"><i class="fa fa-pencil-alt"></i></a>
+                       <a t-att-href="('/eliminarestudiante?id=%s' % data.id)" class="btn btn-danger"><i class="fa fa-times"></i></a></th>
 
                            
    
@@ -288,10 +294,20 @@ $('#myModal').on('shown.bs.modal', function () {
     <div class="col-sm-10">
       <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_estudiante" name="apellido_estudiante" t-att-value="apellido_estudiante" placeholder="Ingrese apellido del estudiante"/>
     </div>
+    
     <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
     <div class="col-sm-10">
       <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="id_tarjeta" placeholder="ID tarjeta"/>
     </div>
+    
+    <label for="">Curso al que pertenece</label>
+    <select required="True"  id="curso" name="curso" > 
+    <option value="">Eliga una opcion</option>
+    <div t-foreach="curso" t-as="data">
+    <option t-att-value="id_curso"><t t-esc="data.nombre_curso"></t></option>
+    </div>
+    </select>
+    
   </div>
   <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

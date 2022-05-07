@@ -11,8 +11,11 @@ class principalLab(http.Controller):
     ], type='http', auth='public', website=True)
     def main (self, **kwards):
       lab = request.env['accesscontrol.lab'].sudo().search([('estado_lab','=',True)])
+      self.warning = False
+      print('waaaaaaaaaaaaaaaaaaaarrrrrnnnnnnniiiiiing', self.warning)
       context = {
-        'lab':lab
+        'lab':lab,
+        'warning':self.warning
 
       }
       return request.render('accesscontrol.websitelab',context)

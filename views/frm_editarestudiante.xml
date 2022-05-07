@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Editar nombre de la carrera</h1>
+    <h1>Editar estudiante</h1>
     <div class="form-group" >
         
        
@@ -232,16 +232,38 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
  
     
-    <form id="edit" name="edit" method="POST" action="/editarcarrera" t-foreach="c" t-as="l">
+    <form id="edit" name="edit" method="POST" action="/editarestudiante" t-foreach="e" t-as="est">
  
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Nombre de la carrera</label>
-            <div class="col-sm-10">
-            <input type="text" class="form-control" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" id="nombre_carrera"  t-att-value="l.nombre_carrera" name="nombre_carrera" for="nombre_carrera"  placeholder="Ingrese nombre de la carrera"/>
-            </div>
-        </div>
+       <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
+    <div class="col-sm-10">
+      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_estudiante" name="cedula_estudiante" t-att-value="est.cedula_estudiante"/>
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_estudiante" name="nombre_estudiante" t-att-value="est.nombre_estudiante" />
+    </div>
+    <label for="inputPassword" class="col-sm-2 col-form-label">Apellido</label>
+    <div class="col-sm-10">
+      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_estudiante" name="apellido_estudiante" t-att-value="est.nombre_estudiante" />
+    </div>
+    
+    <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
+    <div class="col-sm-10">
+      <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="est.id_tarjeta"/>
+    </div>
+    
+    <label for="">Curso al que pertenece</label>
+    <select required="True"  id="curso" name="curso" > 
+    <option value="">Eliga una opcion</option>
+    <div t-foreach="c" t-as="curso">
+    <option t-att-value="id_curso"><t t-esc="curso.nombre_curso"></t></option>
+    </div>
+    </select>
+    
+  </div>
         <div class="modal-footer">
-            <a type="button" href="/carrera"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+            <a type="button" href="/estudiantes"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
             <button type="submit"  class="btn btn-success">Guardar</button>
         </div>
     </form>
