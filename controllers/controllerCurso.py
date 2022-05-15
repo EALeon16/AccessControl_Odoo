@@ -50,8 +50,8 @@ class principalCurso(http.Controller):
         return request.render('accesscontrol.webeliminarcurso',context)
 
       except:
-        eliminarcurso = request.env['accesscontrol.curso'].sudo().search([('id','=',id)]).sudo().update({'estado_curso':False})
-        print('dasdasdadasdasdadasdasdadasdadasdasd', id)
+        eliminarcurso = request.env['accesscontrol.curso'].sudo().search([('id','=',id)]).sudo().unlink()
+        print('Se elimino', id)
         id = None
         return request.redirect('/curso')
 

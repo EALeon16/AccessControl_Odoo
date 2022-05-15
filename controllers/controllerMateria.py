@@ -65,7 +65,7 @@ class principalMateria(http.Controller):
         return request.render('accesscontrol.webeliminarmateria',context)
 
       except:
-        eliminarmateria = request.env['accesscontrol.materia'].sudo().search([('id','=',id)]).sudo().update({'estado_materia':False})
+        eliminarmateria = request.env['accesscontrol.materia'].sudo().search([('id','=',id)]).sudo().unlink()
         print('Se elimino', id)
         id = None
         return request.redirect('/materia')

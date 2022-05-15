@@ -21,11 +21,13 @@
 
     <!-- Custom styles for this template-->
     <link href="/accesscontrol/static/css/sb-admin-2.min.css" rel="stylesheet"/>
+    
 
+    <link  href="/accesscontrol/static/css/horario.css" rel="stylesheet" type="text/css" />
 <script>
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+
+var m = m;
+console.log(m)
 </script>
 </head>
 
@@ -226,6 +228,13 @@ $('#myModal').on('shown.bs.modal', function () {
 <div class="container">
    
     <h1>Laboratorios</h1>
+    <p t-foreach="h" t-as="horario">
+    <t t-esc="horario.id"/>
+    <t t-esc="horario.dia"/>
+    <t t-esc="horario.hora_inicio"/>
+    <t t-esc="horario.hora_fin"/>
+    <t t-esc="horario.materia_id.nombre_materia"/>
+    </p>
     <div class="form-group" >
         
        
@@ -233,35 +242,263 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
     <div >
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Agregar Laboratorio
+                <span class="glyphicon glyphicon-plus" ></span>Agregar Registro
               </a>
         </div>
     <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">carrera</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">materia</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Laboratorio 1</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Laboratiorio 2</a>
+                                
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Project Name</th>
-                                            <th>Employer</th>
-                                            <th>Awards</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr t-foreach="c" t-as="data">
-                                            <td><t t-esc="data.id"/></td>
-                                            <td><t t-esc="data.nombre_carrera"/></td>
-                                            <td><t t-esc="data.estado_carrera"/></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    	<table class="cal" border="1">
+		
+		<thead>
+			<tr>
+				<th></th>
+				<th>Lun</th>
+				<th>Mar</th>
+				<th>Mié</th>
+				<th>Jue</th>
+				<th>Vie</th>
+
+			</tr>
+
+		</thead>
+
+		<tbody>
+			<tr >
+            
+				<td class="horas">7:30 a 8:30 </td>
+				 
+                <td><!-- Lunes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                 </td>
+                <td><!-- Martes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '07:30' or hdata.hora_fin == '08:30' or hdata.hora_inicio >= '07:30'   and hdata.hora_fin &lt;='08:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </td>
+                <td><!-- Viernes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </td>
+                
+            
+			</tr>
+		
+			<tr>
+				<td class="horas">8:30 a 9:30 </td>
+                <td><!-- Lunes -->
+               <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Martes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio >= '08:30'   and hdata.hora_fin &lt;='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Viernes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_fin >= '08:30'   and hdata.hora_fin &lt;='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+			</tr>
+			<tr>
+				<td class="horas">9:30 a 10:30 </td>
+                <td><!-- Lunes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Martes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio >= '09:30' and hdata.hora_fin &lt;='10:30' or hdata.hora_fin > '09:30' or hdata.hora_fin > '10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Viernes funkaaaaaaaaaaaaaaaaaa-->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio >= '09:30'   and hdata.hora_fin &lt;='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+
+			</tr>
+			<tr>
+				<td class="horas">10:30 a 11:30 </td>
+                <td><!-- Lunes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio >= '10:30'   and hdata.hora_fin &lt;='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Martes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Viernes -->
+               <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio >= '10:30'   and hdata.hora_fin &lt;='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+            </tr>
+			<tr>
+				<td class="horas">11:30 a 12:30 </td>
+                <td><!-- Lunes -->
+                 <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Martes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio >= '11:30' and hdata.hora_fin &lt;='12:30' or hdata.hora_fin > '11:30' or hdata.hora_fin > '12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Viernes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio >= '11:30' and hdata.hora_fin &lt;='12:30' or hdata.hora_fin >= '11:30' or hdata.hora_fin >= '12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+			</tr>
+
+			<tr>
+				<td class="horas">12:30 a 13:30 </td>
+                <td><!-- Lunes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Martes -->
+               <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio >= '12:30' and hdata.hora_fin &lt;='13:30' or hdata.hora_fin > '12:30' or hdata.hora_fin > '13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Miercoles -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+                <td><!-- Jueves -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p></td>
+                <td><!-- Viernes -->
+                <p t-foreach="h" t-as="hdata">
+                <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_fin >= '12:30'   and hdata.hora_fin &lt;='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+				</p>
+                </p>
+                </td>
+			</tr>
+		
+		</tbody>
+	</table>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <table class="table" cellspacing="0">
@@ -281,34 +518,7 @@ $('#myModal').on('shown.bs.modal', function () {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <table class="table" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Contest Name</th>
-                                            <th>Date</th>
-                                            <th>Award Position</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="#">Work 1</a></td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 2</a></td>
-                                            <td>Moe</td>
-                                            <td>mary@example.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 3</a></td>
-                                            <td>Dooley</td>
-                                            <td>july@example.com</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            
                         </div>
 </div>
 
@@ -317,30 +527,94 @@ $('#myModal').on('shown.bs.modal', function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Laboratorio</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Registro</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"></span>
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/guardarlab">
+        <form method="POST" action="/guardarhorario">
  
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Codigo del laboratorio</label>
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora inicio</label>
                     <div class="col-sm-10">
-                    <input type="text" required="True" class="form-control" id="codigo_lab" name="codigo_lab" t-att-value="codigo_lab" placeholder="Ingrese el codigo del laboratorio"/>
+                    <input type="time"  min="07:30" max="12:30" required="True" class="form-control" id="hora_inicio" name="hora_inicio" t-att-value="hora_inicio" placeholder="Ingrese la hora de inicio"/>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre del laboratorio</label>
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora fin</label>
                     <div class="col-sm-10">
-                    <input type="text" required="True" class="form-control" id="nombre_lab" name="nombre_lab" t-att-value="nombre_lab" placeholder="Ingrese el nombre del laboratorio"/>
+                    <input type="time" min="08:30" max="13:30" required="True" class="form-control" id="hora_fin" name="hora_fin" t-att-value="hora_fin" placeholder="Ingrese la hora de fin"/>
+                    </div>
+                </div>
+
+                 <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Dia</label>
+                        <div class="col-sm-10">
+                        <select name="dia" id="dia">
+                        
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                        </select>
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Laboratorio</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="lab" name="lab" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="lab" t-as="l">
+                         <option t-att-value="id_lab"><t t-esc="l.nombre_lab"></t></option>
+                         </label>
+                    </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Clave de la llave</label>
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Carrera</label>
                     <div class="col-sm-10">
-                    <input type="text" required="True" class="form-control" id="clave_llave" name="clave_llave" t-att-value="clave_llave" placeholder="Ingrese la clave de la llave"/>
+                    <select required="True"  id="carrera" name="carrera" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="carrera" t-as="c">
+                         <option t-att-value="id_carrera"><t t-esc="c.nombre_carrera"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Materia</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="materia" name="materia" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="materia" t-as="m">
+                         <option t-att-value="id_materia"><t t-esc="m.nombre_materia"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Curso</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="curso" name="curso" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="curso" t-as="curso">
+                         <option t-att-value="id_curso"><t t-esc="curso.nombre_curso"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Docente</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="docente" name="docente" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="docente" t-as="d">
+                         <option t-att-value="id_docente"><t t-esc="d.nombre_docente"></t></option>
+                         </label>
+                    </select>
                     </div>
                 </div>
             <div class="modal-footer">

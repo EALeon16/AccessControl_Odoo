@@ -62,7 +62,7 @@ class paginaEstudiante(http.Controller):
         return request.render('accesscontrol.webeliminarestudiante',context)
 
       except:
-        eliminarest = request.env['accesscontrol.estudiante'].sudo().search([('id','=',id)]).sudo().update({'estado_estudiante':False})
+        eliminarest = request.env['accesscontrol.estudiante'].sudo().search([('id','=',id)]).sudo().unlink()
         print('Se elimino', id)
         id = None
         return request.redirect('/estudiantes')

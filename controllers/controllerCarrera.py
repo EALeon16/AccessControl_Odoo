@@ -61,7 +61,7 @@ class paginaCarrera(http.Controller):
         }
         return request.render('accesscontrol.webeliminarcarrera',context)
       except:
-        eliminarcarrera = request.env['accesscontrol.carrera'].sudo().search([('id','=',id)]).sudo().update({'estado_carrera':False})
+        eliminarcarrera = request.env['accesscontrol.carrera'].sudo().search([('id','=',id)]).sudo().unlink()
         print('Se elimino la carrera', id)
         id = None
         return request.redirect('/carrera')

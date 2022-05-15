@@ -62,16 +62,17 @@ class Estudiante(models.Model):
 warning = fields.Boolean('warning',default=False)
 
 
-#class Horario(models.Model):
-#    _name = 'accesscontrol.horario'
-#    hora_inicio = fields.Char('hora_fin', required=True)
-#    hora_fin = fields.Char('hora_inicio', required=True)
-#    dia = fields.Char('dia', required=True )
-#    estado_horario = fields.Char('estado_horario', default=True)
-#    lab_id = fields.Many2one('accesscontrol.lab')
-#    carrera_id = fields.Many2one('accesscontrol.carrera')
-#    materia_id = fields.Many2one('accesscontrol.materia')
-#    curso_id = fields.Many2one('accesscontrol.curso')
+class Horario(models.Model):
+    _name = 'accesscontrol.horario'
+    hora_inicio = fields.Char('hora_inicio', required=True)
+    hora_fin = fields.Char('hora_fin', required=True)
+    dia = fields.Char('dia', required=True )
+    estado_horario = fields.Char('estado_horario', default=True)
+    lab_id = fields.Many2one('accesscontrol.lab')
+    carrera_id = fields.Many2one('accesscontrol.carrera')
+    materia_id = fields.Many2one('accesscontrol.materia')
+    curso_id = fields.Many2one('accesscontrol.curso')
+    docente_id = fields.Many2one('accesscontrol.docente')
 
 class DialogBoxWizard(models.TransientModel):
     """ Wizard for dialog box

@@ -61,7 +61,7 @@ class paginaCarrera(http.Controller):
         return request.render('accesscontrol.webeliminardocente',context)
 
       except:
-        eliminard = request.env['accesscontrol.docente'].sudo().search([('id','=',id)]).sudo().update({'estado_docente':False})
+        eliminard = request.env['accesscontrol.docente'].sudo().search([('id','=',id)]).sudo().unlink()
         print('Se elimino', id)
         id = None
         return request.redirect('/docentes')

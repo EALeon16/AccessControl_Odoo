@@ -57,7 +57,7 @@ class principalLab(http.Controller):
         return request.render('accesscontrol.webeliminarlab',context)
 
       except:
-        eliminarlab = request.env['accesscontrol.lab'].sudo().search([('id','=',id)]).sudo().update({'estado_lab':False})
+        eliminarlab = request.env['accesscontrol.lab'].sudo().search([('id','=',id)]).sudo().unlink()
         print('Se elimino', id)
         id = None
         return request.redirect('/lab')
