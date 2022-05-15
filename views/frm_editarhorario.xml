@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id='webeditardocente' name='principal'>
+    <template id='webeditarhorario' name='principal'>
      <html lang="en">
 
 <head>
@@ -93,7 +93,7 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="/horarios">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
@@ -224,7 +224,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 <div class="container">
    
-    <h1>Editar docente</h1>
+    <h1>Editar Horario</h1>
     <div class="form-group" >
         
        
@@ -232,42 +232,95 @@ $('#myModal').on('shown.bs.modal', function () {
     </div>
  
     
-    <form id="edit" name="edit" method="POST" action="/editardocente" t-foreach="d" t-as="doc">
+<form method="POST" action="/editarhorario" t-foreach="fh" t-as="fh">
  
-        <div class="form-group row">
-  <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
-    <div class="col-sm-10">
-      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_docente" name="cedula_docente" t-att-value="doc.cedula_docente" placeholder="Ingrese cedula del docente"/>
-    </div>
-    <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
-    <div class="col-sm-10">
-      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="nombre_docente" name="nombre_docente" t-att-value="doc.nombre_docente" placeholder="Ingrese nombre del docente"/>
-    </div>
-    <label for="inputPassword" class="col-sm-2 col-form-label">Apellido</label>
-    <div class="col-sm-10">
-      <input type="text"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="True" title="Solo se aceptan letras" class="form-control" id="apellido_docente" name="apellido_docente" t-att-value="doc.apellido_docente" placeholder="Ingrese apellido del docente"/>
-    </div>
-    <label for="inputPassword" class="col-sm-2 col-form-label">Correo</label>
-    <div class="col-sm-10">
-      <input type="email" required="True" title="Solo se aceptan direcciones de correo pertenecientes a @unl.edu.ec" pattern=".+@unl.edu\.ec" class="form-control" id="correo_docente" name="correo_docente" t-att-value="doc.correo_docente" placeholder="example@unl.edu.ec"/>
-    </div>
-    <label for="inputPassword" class="col-sm-2 col-form-label">ID de tarjeta</label>
-    <div class="col-sm-10">
-      <input type="text"  title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="id_tarjeta" name="id_tarjeta" t-att-value="doc.id_tarjeta" placeholder="ID tarjeta"/>
-    </div>
-  </div>
-  <label for="">Carrera al que pertenece</label>
-    <select required="True"  id="carrera" name="carrera" > 
-    <option value="">Eliga una opcion</option>
-    <div t-foreach="c" t-as="data">
-    <option t-att-value="id_curso"><t t-esc="data.nombre_carrera"></t></option>
-    </div>
-    </select>
-        <div class="modal-footer">
-            <a type="button" href="/docentes"  class="btn btn-danger" data-dismiss="modal">Cancelar</a>
-            <button type="submit"  class="btn btn-success">Guardar</button>
-        </div>
-    </form>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora inicio</label>
+                    <div class="col-sm-10">
+                    <input type="time"  min="07:30" max="12:30" required="True" class="form-control" id="hora_inicio" name="hora_inicio" t-att-value="fh.hora_inicio" placeholder="Ingrese la hora de inicio"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora fin</label>
+                    <div class="col-sm-10">
+                    <input type="time" min="08:30" max="13:30" required="True" class="form-control" id="hora_fin" t-att-value="fh.hora_fin" name="hora_fin"  placeholder="Ingrese la hora de fin"/>
+                    </div>
+                </div>
+
+                 <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Dia</label>
+                        <div class="col-sm-10">
+                        <select name="dia" id="dia">
+                        
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                        </select>
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Laboratorio</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="lab" name="lab" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="lab" t-as="l">
+                         <option t-att-value="id_lab"><t t-esc="l.nombre_lab"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Carrera</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="carrera" name="carrera" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="carrera" t-as="c">
+                         <option t-att-value="id_carrera"><t t-esc="c.nombre_carrera"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Materia</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="materia" name="materia" > 
+                        <option >Elija una opcion</option>
+                        <label t-foreach="materia" t-as="m">
+                         <option t-att-value="id_materia"><t t-esc="m.nombre_materia"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Curso</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="curso" name="curso" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="curso" t-as="curso">
+                         <option t-att-value="id_curso"><t t-esc="curso.nombre_curso"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                     <label for="inputPassword" class="col-sm-2 col-form-label">Docente</label>
+                    <div class="col-sm-10">
+                    <select required="True"  id="docente" name="docente" > 
+                        <option value="">Elija una opcion</option>
+                        <label t-foreach="docente" t-as="d">
+                         <option t-att-value="id_docente"><t t-esc="d.nombre_docente"></t></option>
+                         </label>
+                    </select>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
 
 </div>
 

@@ -22,8 +22,75 @@
     <!-- Custom styles for this template-->
     <link href="/accesscontrol/static/css/sb-admin-2.min.css" rel="stylesheet"/>
     
+<style>
+table.cal {
+	display:inline-block;
+	min-height:600px;
+	width:97%;
+	color: #06425c;
+	border-spacing:0;
+	border: 1px solid grey;
+	border-radius: 20px 20px 20px 20px;
+	padding: 2%;
+	margin: 2%;
+}
+thead> tr > th {; background-color:#29a6F6; 
+		border: 1px solid  white;
+	border-radius: 10px ; height:50px;
+	text-align:center;
+	vertical-align:center;
+font-size:25px;  margin: 1%; padding:1%;}
+.horas{
+	margin: 0;
+	padding: 0;
+	background-color:#FFD180 ;
+}
 
-    <link  href="/accesscontrol/static/css/horario.css" rel="stylesheet" type="text/css" />
+tr:nth-child(odd) {
+	
+	border-radius: 10px 10px 10px 10px;
+	padding:1%;
+	margin:1%;
+}
+tr:nth-child(even) {
+		border-radius: 10px 10px 10px 10px;
+	padding:1%;
+	margin:1%;
+}
+tr:last-child {
+	border-radius: 0 0 10px 10px;
+	padding:1%;
+	margin:1%;
+}
+tr:last-child > td:first-child {
+	border-radius: 10px ;
+	padding:1%;
+	margin:1%;
+}
+tr:last-child > td:last-child {
+	padding:1%;
+	margin:1%;
+	border-radius: 10px;
+}
+
+table.cal>tbody> th,td
+ {
+	display:in-line;	
+		width:10%;margin: 2%;
+	padding:2%;
+	height:60px;
+		border: 2px outset white;
+	vertical-align:top;
+
+	text-align: center;
+	border-radius: 10px;
+}
+th {
+	text-align: center;
+	background: #ffffff;
+	border: 2px outset grey;
+}
+</style>
 <script>
 
 var m = m;
@@ -228,13 +295,7 @@ console.log(m)
 <div class="container">
    
     <h1>Laboratorios</h1>
-    <p t-foreach="h" t-as="horario">
-    <t t-esc="horario.id"/>
-    <t t-esc="horario.dia"/>
-    <t t-esc="horario.hora_inicio"/>
-    <t t-esc="horario.hora_fin"/>
-    <t t-esc="horario.materia_id.nombre_materia"/>
-    </p>
+   
     <div class="form-group" >
         
        
@@ -276,29 +337,29 @@ console.log(m)
 				 
                 <td><!-- Lunes -->
                 <p t-foreach="h" t-as="hdata">
-                <p t-if="hdata.dia == 'Lunes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.dia == 'Lunes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                  </td>
                 <td><!-- Martes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '07:30' or hdata.hora_fin == '08:30' or hdata.hora_inicio >= '07:30'   and hdata.hora_fin &lt;='08:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '07:30' or hdata.hora_fin == '08:30' or hdata.hora_inicio >= '07:30'   and hdata.hora_fin &lt;='08:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
-                <p t-if="hdata.dia == 'Miercoles' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.dia == 'Miercoles' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
-                <p t-if="hdata.dia == 'Jueves' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.dia == 'Jueves' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </td>
                 <td><!-- Viernes -->
                 <p t-foreach="h" t-as="hdata">
-                <p t-if="hdata.dia == 'Viernes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.dia == 'Viernes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </td>
                 
@@ -310,35 +371,35 @@ console.log(m)
                 <td><!-- Lunes -->
                <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Martes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio >= '08:30'   and hdata.hora_fin &lt;='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Viernes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_fin >= '08:30'   and hdata.hora_fin &lt;='09:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '08:30' or hdata.hora_fin == '09:30' or hdata.hora_inicio &lt;= '08:30'   and hdata.hora_fin >='09:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
@@ -348,35 +409,35 @@ console.log(m)
                 <td><!-- Lunes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Martes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio >= '09:30' and hdata.hora_fin &lt;='10:30' or hdata.hora_fin > '09:30' or hdata.hora_fin > '10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Viernes funkaaaaaaaaaaaaaaaaaa-->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio >= '09:30'   and hdata.hora_fin &lt;='10:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '09:30' or hdata.hora_fin == '10:30' or hdata.hora_inicio &lt;= '09:30'   and hdata.hora_fin >='10:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
@@ -387,35 +448,35 @@ console.log(m)
                 <td><!-- Lunes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio >= '10:30'   and hdata.hora_fin &lt;='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Martes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Viernes -->
                <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio >= '10:30'   and hdata.hora_fin &lt;='11:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '10:30' or hdata.hora_fin == '11:30' or hdata.hora_inicio &lt;= '10:30'   and hdata.hora_fin >='11:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
@@ -425,35 +486,35 @@ console.log(m)
                 <td><!-- Lunes -->
                  <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Martes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio >= '11:30' and hdata.hora_fin &lt;='12:30' or hdata.hora_fin > '11:30' or hdata.hora_fin > '12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio >= '11:30' and hdata.hora_fin &lt;='12:30' or hdata.hora_fin > '11:30' or hdata.hora_fin > '12:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Viernes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio >= '11:30' and hdata.hora_fin &lt;='12:30' or hdata.hora_fin >= '11:30' or hdata.hora_fin >= '12:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '11:30' or hdata.hora_fin == '12:30' or hdata.hora_inicio &lt;= '11:30'   and hdata.hora_fin >='12:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
@@ -464,34 +525,34 @@ console.log(m)
                 <td><!-- Lunes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Lunes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Martes -->
                <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Martes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio >= '12:30' and hdata.hora_fin &lt;='13:30' or hdata.hora_fin > '12:30' or hdata.hora_fin > '13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio >= '12:30' and hdata.hora_fin &lt;='13:30' or hdata.hora_fin > '12:30' or hdata.hora_fin > '13:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Miercoles -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Miercoles' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
                 <td><!-- Jueves -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Jueves' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p></td>
                 <td><!-- Viernes -->
                 <p t-foreach="h" t-as="hdata">
                 <p t-if="hdata.dia == 'Viernes' and hdata.lab_id.nombre_lab == '1'">
-                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_fin >= '12:30'   and hdata.hora_fin &lt;='13:30'"><t t-esc="hdata.materia_id.nombre_materia"/><p style="page-break-before:always;"> </p></p>
+                <p t-if="hdata.hora_inicio == '12:30' or hdata.hora_fin == '13:30' or hdata.hora_inicio &lt;= '12:30'   and hdata.hora_fin >='13:30'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                 </p>
                 </td>
