@@ -38,7 +38,7 @@ class principalLab(http.Controller):
             return request.redirect('/lab')
         else:
           request.env['accesscontrol.lab'].sudo().create(post)
-          print('se creo', post)
+          print('se creo el laboratorio', post)
           return request.redirect('/lab')
 
     @http.route([
@@ -58,7 +58,7 @@ class principalLab(http.Controller):
 
       except:
         eliminarlab = request.env['accesscontrol.lab'].sudo().search([('id','=',id)]).sudo().unlink()
-        print('Se elimino', id)
+        print('Se elimino el laboratorio', id)
         id = None
         return request.redirect('/lab')
 
@@ -92,5 +92,5 @@ class principalLab(http.Controller):
           'clave_llave':clave,
         })
         id = None
-        print('Se edito', codigo, nombre, estado,clave) 
+        print('Se edito el laboratorio', codigo, nombre, estado,clave) 
         return request.redirect('/lab')

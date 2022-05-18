@@ -67,7 +67,7 @@ class paginaCarrera(http.Controller):
 
       except:
         eliminard = request.env['accesscontrol.docente'].sudo().search([('id','=',id)]).sudo().unlink()
-        print('Se elimino', id)
+        print('Se elimino el docente', id)
         id = None
         return request.redirect('/docentes')
 
@@ -108,5 +108,5 @@ class paginaCarrera(http.Controller):
 
         })
         id = None
-        print('Se edito', nombre, apellido) 
+        print('Se edito el docente') 
         return request.redirect('/docentes')

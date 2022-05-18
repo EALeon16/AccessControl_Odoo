@@ -5,6 +5,7 @@ function validarCedula(cedula) {
     var longcheck = longitud - 1;
 
     if (cad !== "" && longitud === 10) {
+
         for (i = 0; i < longcheck; i++) {
             if (i % 2 === 0) {
                 var aux = cad.charAt(i) * 2;

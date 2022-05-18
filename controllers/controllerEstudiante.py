@@ -41,7 +41,7 @@ class paginaEstudiante(http.Controller):
         'curso_id':buscarCurso.id,
 
       })
-      
+      print('Se creo el estudiante')
       
       return request.redirect('/estudiantes')
 
@@ -63,7 +63,7 @@ class paginaEstudiante(http.Controller):
 
       except:
         eliminarest = request.env['accesscontrol.estudiante'].sudo().search([('id','=',id)]).sudo().unlink()
-        print('Se elimino', id)
+        print('Se elimino el estudiante', id)
         id = None
         return request.redirect('/estudiantes')
     
@@ -104,5 +104,5 @@ class paginaEstudiante(http.Controller):
 
         })
         id = None
-        print('Se edito', nombre, apellido) 
+        print('Se edito al estudiante', nombre, apellido) 
         return request.redirect('/estudiantes')

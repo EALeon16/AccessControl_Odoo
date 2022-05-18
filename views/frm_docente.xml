@@ -37,31 +37,32 @@
     var z = $("#cedula_docente").val();
      var cad = z.trim();
     var total = 0;
-    var longitud = cad.length;
+    var longitud = z.length;
     var longcheck = longitud - 1;
 
     if (cad !== "") {
-        for (i = 0; i &lt; longcheck; i++) {
-            if (i % 2 == 0) {
-                var aux = cad.charAt(i) * 2;
-                if (aux > 9)
-                    aux -= 9;
-                total += aux;
-            } else {
-                total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+        if (longitud == 10){
+            for (i = 0; i &lt; longcheck; i++) {
+                if (i % 2 == 0) {
+                    var aux = cad.charAt(i) * 2;
+                    if (aux > 9)
+                        aux -= 9;
+                    total += aux;
+                } else {
+                    total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+                }
             }
-        }
 
-        total = total % 10 ? 10 - total % 10 : 0;
+            total = total % 10 ? 10 - total % 10 : 0;
 
-        if (cad.charAt(longitud - 1) == total) {
-            
-            
-        } else {
-            $("#funka").show();
-            alert("no valida")
-            $("#cedula_docente").val("");
+            if (cad.charAt(longitud - 1) == total) {
+                
+                
+            } else {
+                alert("no valida")
+                $("#cedula_docente").val("");
 
+            }
         }
     }
 });
@@ -278,7 +279,6 @@
         </div>
     <table class="table table-striped" id="tpelicula">
         <thead>
-        <input type="text" id="prueba" name="prueba"/>
             <tr>
                 <th>ID</th>
                 <th>Cedula</th>
