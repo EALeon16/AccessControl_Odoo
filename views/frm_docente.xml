@@ -21,11 +21,52 @@
 
     <!-- Custom styles for this template-->
     <link href="/accesscontrol/static/css/sb-admin-2.min.css" rel="stylesheet"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="/accesscontrol/static/js/1.js"></script>
+    <script src="/accesscontrol/static/js/2.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+       
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
 <script>
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-</script>
+  $(document).ready(function () {
+      $(document).mousedown(function(event) { 
+    var z = $("#cedula_docente").val();
+     var cad = z.trim();
+    var total = 0;
+    var longitud = cad.length;
+    var longcheck = longitud - 1;
+
+    if (cad !== "") {
+        for (i = 0; i &lt; longcheck; i++) {
+            if (i % 2 == 0) {
+                var aux = cad.charAt(i) * 2;
+                if (aux > 9)
+                    aux -= 9;
+                total += aux;
+            } else {
+                total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
+            }
+        }
+
+        total = total % 10 ? 10 - total % 10 : 0;
+
+        if (cad.charAt(longitud - 1) == total) {
+            
+            
+        } else {
+            $("#funka").show();
+            alert("no valida")
+            $("#cedula_docente").val("");
+
+        }
+    }
+});
+  });
+</script >
 </head>
 
 <body id="page-top">
@@ -237,6 +278,7 @@ $('#myModal').on('shown.bs.modal', function () {
         </div>
     <table class="table table-striped" id="tpelicula">
         <thead>
+        <input type="text" id="prueba" name="prueba"/>
             <tr>
                 <th>ID</th>
                 <th>Cedula</th>
@@ -285,8 +327,13 @@ $('#myModal').on('shown.bs.modal', function () {
  
   <div class="form-group row">
   <label for="inputPassword" class="col-sm-2 col-form-label">Cedula</label>
+  
     <div class="col-sm-10">
-      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_docente" name="cedula_docente" t-att-value="cedula_docente" placeholder="Ingrese cedula del docente"/>
+      <input type="text"  required="True" title="Solo se aceptan numeros" pattern="[0-9]{0,13}" class="form-control" id="cedula_docente" name="cedula_docente"  placeholder="Ingrese cedula del docente"/>
+        <div class="alert alert-warning alert-dismissable" hidden="True" id="funka" name="funka">
+  <button type="button" class="close" data-dismiss="alert"></button>
+  <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+</div> 
     </div>
     <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">
@@ -418,7 +465,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
     <!-- Custom scripts for all pages-->
     <script src="/accesscontrol/static/js/sb-admin-2.min.js"></script>
-
+    
     <!-- Page level plugins -->
     <script src="/accesscontrol/static/vendor/chart.js/Chart.min.js"></script>
 

@@ -26,13 +26,25 @@ class principalCurso(http.Controller):
         nombre = request.params['nombre_curso']
         carrera = request.params['carrera']
         buscarcarrera = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
-        request.env['accesscontrol.curso'].sudo().create({
-          'nombre_curso':nombre,
-          'carerra_id':buscarcarrera.id,
-        })
+        listacurso = request.env['accesscontrol.curso'].sudo().search([('nombre_curso','=',nombre)])
+        curso = None
+        for i in range(len(listacurso)):
+          if str(buscarcarrera.id) in str(listacurso[i].carerra_id):
+            curso = listacurso[i]
+            print(curso)
+            break
 
-        print('se creoooooooooooooooooo', nombre, carrera)
-        return request.redirect('/curso')
+        if curso is None:    
+          request.env['accesscontrol.curso'].sudo().create({
+            'nombre_curso':nombre,
+            'carerra_id':buscarcarrera.id,
+          })
+
+          print('se creo el curso', nombre, carrera)
+          return request.redirect('/curso')
+        else:
+          print('Ya existe ese curso',)
+          return request.redirect('/curso')
 
     @http.route([
       '/eliminarcurso',  

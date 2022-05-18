@@ -30,14 +30,8 @@ class paginaCarrera(http.Controller):
 
         carrera = request.params['nombre_carrera']
         if request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)]):
-          c = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
-          if request.env['accesscontrol.carrera'].sudo().search([('estado_carrera','=',False)]):
-            request.env['accesscontrol.carrera'].sudo().search([('id','=',c.id)]).sudo().update({'estado_carrera':True})
-            print('ya existe la carrera y se actualizo')
-            return request.redirect('/carrera')
-          else:
-            print('ya existe la carrera')
-            return request.redirect('/carrera')
+          print('ya existe la carrera')
+          return request.redirect('/carrera')
         else:
           request.env['accesscontrol.carrera'].sudo().create(post)
           

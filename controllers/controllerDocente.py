@@ -32,18 +32,23 @@ class paginaCarrera(http.Controller):
       tarjeta = request.params['id_tarjeta']
       carrera = request.params['carrera']
       buscarCarrera =request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
-      request.env['accesscontrol.docente'].sudo().create({
-        'cedula_docente':cedula,
-        'nombre_docente':nombre,
-        'apellido_docente':apellido,
-        'correo_docente':email,
-        'id_tarjeta':tarjeta,
-        'carrera_id':buscarCarrera.id,
 
-      })
-      
-      
-      return request.redirect('/docentes')
+      if request.env['accesscontrol.docente'].sudo().search([('cedula_docente','=',cedula)]) or request.env['accesscontrol.docente'].sudo().search([('id_tarjeta','=',tarjeta)]):
+        print('Ya existe el docente')
+        return request.redirect('/docentes')
+      else:
+        request.env['accesscontrol.docente'].sudo().create({
+          'cedula_docente':cedula,
+          'nombre_docente':nombre,
+          'apellido_docente':apellido,
+          'correo_docente':email,
+          'id_tarjeta':tarjeta,
+          'carrera_id':buscarCarrera.id,
+
+        })
+        print('Docente creado')
+        
+        return request.redirect('/docentes')
 
     @http.route([
       '/eliminardocente',  

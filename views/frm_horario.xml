@@ -301,20 +301,21 @@ console.log(m)
        
       
     </div>
-    <div >
+    <div>
             <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
                 <span class="glyphicon glyphicon-plus" ></span>Agregar Registro
               </a>
         </div>
+    <p >
     <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Laboratorio 1</a>
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" t-attf-class="labnav.id" role="tab" aria-controls="nav-home" aria-selected="true">Laboratorio 1</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Laboratiorio 2</a>
                                 
                             </div>
                         </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="tab-content" id="nav-tabContent" t-foreach="lab" t-as="labs">
+                            <div class="tab-pane fade show active" id="('/editarlab?id=%s' % labs.id)" role="tabpanel" aria-labelledby="nav-home-tab">
                                     	<table class="cal" border="1">
 		
 		<thead>
@@ -334,10 +335,10 @@ console.log(m)
 			<tr >
             
 				<td class="horas">7:30 a 8:30 </td>
-				 
                 <td><!-- Lunes -->
                 <p t-foreach="h" t-as="hdata">
-                <p t-if="hdata.dia == 'Lunes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == '1'"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
+
+                <p t-if="hdata.dia == 'Lunes' and hdata.hora_inicio == '07:30' and hdata.lab_id.nombre_lab == labs.nombre_lab"><a t-att-href="('/editarhorario?id=%s' % hdata.id)"><t t-esc="hdata.materia_id.nombre_materia"/></a><p style="page-break-before:always;"> </p></p>
 				</p>
                  </td>
                 <td><!-- Martes -->
@@ -560,27 +561,12 @@ console.log(m)
 		
 		</tbody>
 	</table>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <table class="table" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Project Name</th>
-                                            <th>Employer</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr t-foreach="m" t-as="mdata">
-                                            <td><t t-esc="mdata.id"/></td>
-                                            <td><t t-esc="mdata.nombre_materia"/></td>
-                                            <td><t t-esc="mdata.estado_materia"/></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
+    </div>
+    </div>
+                     
+          <p style="page-break-before:always;"> </p>                  
+    </p>
+                        
 </div>
 
                     <!--Cerrar aqui plantilla-->
