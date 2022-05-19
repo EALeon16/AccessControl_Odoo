@@ -92,9 +92,10 @@ class principalCurso(http.Controller):
       except:
         nombre = request.params['nombre_curso']
         carrera = request.params['carrera']
+        buscarcarrera = request.env['accesscontrol.carrera'].sudo().search([('nombre_carrera','=',carrera)])
         editarcurso = request.env['accesscontrol.curso'].sudo().search([('id','=',id)]).sudo().update({
           'nombre_curso':nombre,
-          'carerra_id':carrera,
+          'carerra_id':buscarcarrera.id,
         })
         id = None
         print('Se edito') 

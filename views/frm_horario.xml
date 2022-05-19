@@ -21,7 +21,14 @@
 
     <!-- Custom styles for this template-->
     <link href="/accesscontrol/static/css/sb-admin-2.min.css" rel="stylesheet"/>
-    
+    <script src="/accesscontrol/static/js/1.js"></script>
+    <script src="/accesscontrol/static/js/2.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+       
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <style>
 table.cal {
 	display:inline-block;
@@ -92,9 +99,23 @@ th {
 }
 </style>
 <script>
+<t t-foreach="carrera" t-as="ca">
+var yu = <t t-foreach="materia" t-as="pa">
+</t>
+ $(document).ready(function () {
+      $(document).mousedown(function(event) { 
+   var s = $("#carrera").val();
+   var h = "<t t-esc="ca.nombre_carrera"/>";
+   console.log("fuera del for",<t t-esc="ca.id"/>)
+    for (var i = 0; i &lt; 5; i++){
+        console.log("dentro del for",<t t-esc="ca.id"/>);
 
-var m = m;
-console.log(m)
+        i++;
+    }
+   
+});
+  });
+</t>
 </script>
 </head>
 
@@ -315,8 +336,9 @@ console.log(m)
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent" t-foreach="lab" t-as="labs">
-                        <h2 style="text-align:center" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" t-attf-class="labnav.id" role="tab" aria-controls="nav-home" aria-selected="true">Laboratorio <t t-esc="labs.nombre_lab"/></h2>
-                            <div class="tab-pane fade show active" id="('/editarlab?id=%s' % labs.id)" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div>
+                        <h2 style="text-align:center"  id="nav-home-tab" role="tab" >Laboratorio <t t-esc="labs.nombre_lab"/><a t-att-href="('/eliminarregistro?id=%s' % labs.id)" class="btn btn-danger"><i style="text-align:center" class="fa fa-times"></i></a></h2></div>
+                            <div class="tab-pane fade show active" id="('/editarregistro?id=%s' % labs.id)" role="tabpanel" aria-labelledby="nav-home-tab">
                                     	<table class="cal" border="1">
 		
 		<thead>

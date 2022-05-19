@@ -18,7 +18,7 @@
         'views/frm_editarlab.xml',
         'views/frm_eliminarlab.xml',
         'views/frm_horario.xml',
-
+        'views/frm_eliminarregistro.xml',
         'views/frm_editarhorario.xml',
         'views/frm_puertas.xml',
         'views/frm_docente.xml',

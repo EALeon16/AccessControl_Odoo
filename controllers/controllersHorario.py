@@ -147,10 +147,51 @@ class principalLab(http.Controller):
         return request.redirect('/horarios')
           
        
+    @http.route([
+      '/eliminarregistro',  
+    ], type='http', auth='public' , website=True, csrf=False, METHODS= ['POST', 'GET'])
+    def eliminarRegistro  (self, **kw):
+      global id
+      try:
+        lab = request.params['id']
+        id = lab
+        buscar = request.env['accesscontrol.lab'].sudo().search([('id','=',lab)])
+        context = {
+        'b':buscar,
 
+        }
+        return request.render('accesscontrol.webeliminarregistro',context)
 
+      except:
+        
+        eliminarregistros = request.env['accesscontrol.lab'].sudo().search([('id','=',id)])
 
+        if eliminarregistros:
+          request.env['accesscontrol.horario'].sudo().search([('lab_id','=',id)]).sudo().unlink()
+          print('Se eliminaron todos los registros', id)
+          id = None
+          return request.redirect('/horarios')
 
+    @http.route([
+      '/eliminarhorario',  
+    ], type='http', auth='public' , website=True, csrf=False, METHODS= ['POST', 'GET'])
+    def eliminarHorario  (self, **kw):
+      global id
+      try:
+        lab = request.params['id']
+        id = lab
+        buscar = request.env['accesscontrol.lab'].sudo().search([('id','=',lab)])
+        context = {
+        'b':buscar,
 
+        }
+        return request.render('accesscontrol.webeliminarregistro',context)
+
+      except:
+        
+        request.env['accesscontrol.horario'].sudo().search([('id','=',id)]).sudo().unlink()
+        print('Se eliminaron todos los registros', id)
+        id = None
+        return request.redirect('/horarios')
 
      

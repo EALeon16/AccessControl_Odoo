@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id='webeditarhorario' name='principal'>
+    <template id='webeliminarregistro' name='principal'>
      <html lang="en">
 
 <head>
@@ -93,12 +93,12 @@ $('#myModal').on('shown.bs.modal', function () {
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/horarios">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horario</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="/horarios">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Informes</span></a>
             </li>
@@ -135,7 +135,6 @@ $('#myModal').on('shown.bs.modal', function () {
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
                   
 
                     <!-- Topbar Navbar -->
@@ -223,109 +222,36 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 <div class="container">
-   <div >
-            <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success" style="float: right;">
-                <span class="glyphicon glyphicon-plus" ></span>Eliminar horario
-              </a>
-        </div>
-    <h1>Eliminar Horario</h1>
-    
+   
+    <h1>Eliminar curso</h1>
     <div class="form-group" >
         
        
       
     </div>
- 
     
-<form method="POST" action="/editarhorario" t-foreach="fh" t-as="fh">
+<div class="alert alert-warning alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert"></button>
+  <strong>¡Cuidado!</strong> Eliminara todos los registros ingresados en este horario.
+</div>
+  <form method="POST" action="/eliminarregistro">
  
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora inicio</label>
-                    <div class="col-sm-10">
-                    <input type="time"  min="07:30" max="12:30" required="True" class="form-control" id="hora_inicio" name="hora_inicio" t-att-value="fh.hora_inicio" placeholder="Ingrese la hora de inicio"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Hora fin</label>
-                    <div class="col-sm-10">
-                    <input type="time" min="08:30" max="13:30" required="True" class="form-control" id="hora_fin" t-att-value="fh.hora_fin" name="hora_fin"  placeholder="Ingrese la hora de fin"/>
-                    </div>
-                </div>
+  <div class="form-group row" >
+    <label for="inputPassword" class="col-sm-2 col-form-label">Desea eliminar todo el registro: ?</label>
+    <div class="col-sm-10">
+      <input hidden ="text"  type="text" class="form-control" id="estado_curso" for="estado_curso"  value="True"  readonly="True"/>
 
-                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Dia</label>
-                        <div class="col-sm-10">
-                        <select name="dia" id="dia">
-                        
-                            <option value="Lunes">Lunes</option>
-                            <option value="Martes">Martes</option>
-                            <option value="Miercoles">Miercoles</option>
-                            <option value="Jueves">Jueves</option>
-                            <option value="Viernes">Viernes</option>
-                        </select>
-                        </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Laboratorio</label>
-                    <div class="col-sm-10">
-                    <select required="True"  id="lab" name="lab" > 
-                        <option t-att-value="fh.lab_id.nombre_lab"><t t-esc="fh.lab_id.nombre_lab"/></option>
-                        <label t-foreach="lab" t-as="l">
-                         <option t-att-value="id_lab"><t t-esc="l.nombre_lab"></t></option>
-                         </label>
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                     <label for="inputPassword" class="col-sm-2 col-form-label">Carrera</label>
-                    <div class="col-sm-10">
-                    <select required="True"  id="carrera" name="carrera" > 
-                        <option t-att-value="fh.carrera_id.nombre_carrera"><t t-esc="fh.carrera_id.nombre_carrera"/></option>
-                        <label t-foreach="carrera" t-as="c">
-                         <option t-att-value="id_carrera"><t t-esc="c.nombre_carrera"></t></option>
-                         </label>
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                     <label for="inputPassword" class="col-sm-2 col-form-label">Materia</label>
-                    <div class="col-sm-10">
-                    <select required="True"  id="materia" name="materia" > 
-                        <option t-att-value="fh.materia_id.nombre_materia"><t t-esc="fh.materia_id.nombre_materia"/></option>
-                        <label t-foreach="materia" t-as="m">
-                         <option t-att-value="id_materia"><t t-esc="m.nombre_materia"></t></option>
-                         </label>
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                     <label for="inputPassword" class="col-sm-2 col-form-label">Curso</label>
-                    <div class="col-sm-10">
-                    <select required="True"  id="curso" name="curso" > 
-                        <option t-att-value="fh.curso_id.nombre_curso"><t t-esc="fh.curso_id.nombre_curso"/></option>
-                        <label t-foreach="curso" t-as="curso">
-                         <option t-att-value="id_curso"><t t-esc="curso.nombre_curso"></t></option>
-                         </label>
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                     <label for="inputPassword" class="col-sm-2 col-form-label">Docente</label>
-                    <div class="col-sm-10">
-                    <select required="True"  id="docente" name="docente" > 
-                        <option t-att-value="fh.docente_id.nombre_docente"><t t-esc="fh.docente_id.nombre_docente"/></option>
-                        <label t-foreach="docente" t-as="d">
-                         <option t-att-value="id_docente"><t t-esc="d.nombre_docente"></t></option>
-                         </label>
-                    </select>
-                    </div>
-                </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
+    </div>
+    <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"  >Eliminar</button>
+       <a  href="/curso" class="btn btn-danger" data-dismiss="modal">Cancelar</a>
+    </div>
+  </div>
+  <div class="modal-footer">
+       
+        
+      </div>
+</form>
 
 </div>
 
@@ -333,27 +259,7 @@ $('#myModal').on('shown.bs.modal', function () {
                 
 <!--           AQUIIIIIIIIIIIIIIIII VAAAAAAAAAAAAAA OTROOOOOOOOOOOO MODAAAAL-->
 
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Desea eliminar el Horario?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="/eliminarhorario">
-            <button  type="submit"  class="btn btn-success">Elimiar</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    
-             
-            </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
+
 
 
 
@@ -401,7 +307,24 @@ $('#myModal').on('shown.bs.modal', function () {
     </a>
 
     <!-- Logout Modal-->
-    
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/accesscontrol/static/vendor/jquery/jquery.min.js"></script>

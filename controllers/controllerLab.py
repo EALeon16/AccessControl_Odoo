@@ -38,8 +38,9 @@ class principalLab(http.Controller):
             return request.redirect('/lab')
         else:
           request.env['accesscontrol.lab'].sudo().create(post)
+          a = 'pasa mensaje'
           print('se creo el laboratorio', post)
-          return request.redirect('/lab')
+          return request.redirect('/lab', a)
 
     @http.route([
       '/eliminarlab',  
